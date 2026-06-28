@@ -24,5 +24,5 @@ A Next.js application for managing and monitoring code repositories with file an
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/repository-dashboard.git
+git clone https://github.com/yourusername/repository-dashboard.git](https://github.com/Do-raa/repositories_dashboard.git
 cd repository-dashboard
