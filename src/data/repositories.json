@@ -1,0 +1,183 @@
+{
+  "repositories": [
+    {
+      "id": "1",
+      "name": "medical-app",
+      "description": "Patient management system with EHR integration",
+      "owner": "healthcare-team",
+      "createdAt": "2024-01-15",
+      "updatedAt": "2024-06-20",
+      "language": "TypeScript",
+      "stars": 45,
+      "forks": 12,
+      "files": [
+        {
+          "id": "f1",
+          "name": "PatientService.ts",
+          "path": "src/services/PatientService.ts",
+          "language": "TypeScript",
+          "type": "service",
+          "size": 24500,
+          "criticality": "high",
+          "isSensitive": true
+        },
+        {
+          "id": "f2",
+          "name": "EHRConnector.js",
+          "path": "src/connectors/EHRConnector.js",
+          "language": "JavaScript",
+          "type": "connector",
+          "size": 12000,
+          "criticality": "high",
+          "isSensitive": true
+        },
+        {
+          "id": "f3",
+          "name": "Dashboard.tsx",
+          "path": "src/components/Dashboard.tsx",
+          "language": "TypeScript",
+          "type": "component",
+          "size": 8900,
+          "criticality": "medium",
+          "isSensitive": false
+        },
+        {
+          "id": "f4",
+          "name": "README.md",
+          "path": "README.md",
+          "language": "Markdown",
+          "type": "documentation",
+          "size": 2300,
+          "criticality": "low",
+          "isSensitive": false
+        },
+        {
+          "id": "f5",
+          "name": "AuthMiddleware.ts",
+          "path": "src/middleware/AuthMiddleware.ts",
+          "language": "TypeScript",
+          "type": "middleware",
+          "size": 5600,
+          "criticality": "high",
+          "isSensitive": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "ecommerce-platform",
+      "description": "Full-featured e-commerce platform with payment integration",
+      "owner": "commerce-team",
+      "createdAt": "2024-02-01",
+      "updatedAt": "2024-06-18",
+      "language": "TypeScript",
+      "stars": 78,
+      "forks": 23,
+      "files": [
+        {
+          "id": "f6",
+          "name": "PaymentProcessor.ts",
+          "path": "src/payment/PaymentProcessor.ts",
+          "language": "TypeScript",
+          "type": "processor",
+          "size": 32000,
+          "criticality": "high",
+          "isSensitive": true
+        },
+        {
+          "id": "f7",
+          "name": "InventoryService.py",
+          "path": "src/services/InventoryService.py",
+          "language": "Python",
+          "type": "service",
+          "size": 15800,
+          "criticality": "medium",
+          "isSensitive": false
+        },
+        {
+          "id": "f8",
+          "name": "ProductCard.tsx",
+          "path": "src/components/ProductCard.tsx",
+          "language": "TypeScript",
+          "type": "component",
+          "size": 6700,
+          "criticality": "low",
+          "isSensitive": false
+        },
+        {
+          "id": "f9",
+          "name": "OrderController.java",
+          "path": "src/controllers/OrderController.java",
+          "language": "Java",
+          "type": "controller",
+          "size": 18500,
+          "criticality": "high",
+          "isSensitive": true
+        },
+        {
+          "id": "f10",
+          "name": "docker-compose.yml",
+          "path": "docker-compose.yml",
+          "language": "YAML",
+          "type": "configuration",
+          "size": 3400,
+          "criticality": "low",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "data-analytics-dashboard",
+      "description": "Real-time data visualization and analytics platform",
+      "owner": "analytics-team",
+      "createdAt": "2024-03-10",
+      "updatedAt": "2024-06-15",
+      "language": "Python",
+      "stars": 34,
+      "forks": 8,
+      "files": [
+        {
+          "id": "f11",
+          "name": "DataPipeline.py",
+          "path": "src/pipeline/DataPipeline.py",
+          "language": "Python",
+          "type": "pipeline",
+          "size": 42000,
+          "criticality": "high",
+          "isSensitive": false
+        },
+        {
+          "id": "f12",
+          "name": "MLModel.py",
+          "path": "src/models/MLModel.py",
+          "language": "Python",
+          "type": "model",
+          "size": 28000,
+          "criticality": "high",
+          "isSensitive": false
+        },
+        {
+          "id": "f13",
+          "name": "DataCleaner.js",
+          "path": "src/utils/DataCleaner.js",
+          "language": "JavaScript",
+          "type": "utility",
+          "size": 9300,
+          "criticality": "medium",
+          "isSensitive": false
+        },
+        {
+          "id": "f14",
+          "name": "ChartComponent.tsx",
+          "path": "src/components/ChartComponent.tsx",
+          "language": "TypeScript",
+          "type": "component",
+          "size": 12300,
+          "criticality": "low",
+          "isSensitive": false
+        }
+      ]
+    }
+  ]
+}

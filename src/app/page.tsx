@@ -1,65 +1,76 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState, useEffect } from 'react';
+import { Repository } from '@/shared/types';
+import { repositoryService } from '@/services/repository.service';
+import { RepositoryList } from '@/features/repositories/components/RepositoryList';
+import { useSearchStore } from '@/store/search.store';
+import { filterRepositories } from '@/features/repositories/utils/repository.utils';
+import { Input } from '@/shared/components/Input';
+import { Search } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+export default function HomePage() {
+  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { searchQuery, setSearchQuery } = useSearchStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    const loadRepositories = async () => {
+      try {
+        const data = await repositoryService.getAllRepositories();
+        setRepositories(data);
+      } catch (error) {
+        console.error('Failed to load repositories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRepositories();
+  }, []);
+
+  const filteredRepositories = filterRepositories(repositories, searchQuery);
+
+  const handleRepositoryClick = (id: string) => {
+    router.push(`/repositories/${id}`);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading repositories...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Repository Dashboard</h1>
+        <p className="text-gray-600">Manage and monitor your code repositories</p>
+      </div>
+
+      <div className="mb-6 max-w-md">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          <Input
+            placeholder="Search repositories..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
+
+      <RepositoryList
+        repositories={filteredRepositories}
+        onRepositoryClick={handleRepositoryClick}
+      />
     </div>
   );
 }
